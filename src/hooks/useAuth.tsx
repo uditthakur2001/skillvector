@@ -1,8 +1,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { Session, User } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
-import { useNavigate } from "react-router-dom";
-const navigate = useNavigate();
+
 type AuthCtx = {
   user: User | null;
   session: Session | null;
@@ -19,14 +18,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     // Listener FIRST
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, sess) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, sess) => {
       setSession(sess);
       setUser(sess?.user ?? null);
       setLoading(false);
 
-       if (event === "SIGNED_IN" && sess) {
-        navigate("/dashboard");
-       }
+      
     });
     // Then existing session
     supabase.auth.getSession().then(({ data: { session: s } }) => {

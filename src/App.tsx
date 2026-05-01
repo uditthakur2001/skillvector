@@ -22,25 +22,7 @@ import Careers from "./pages/Careers.tsx";
 import { SimplePage } from "@/components/SimplePage";
 import NotFound from "./pages/NotFound.tsx";
 
-import { useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import { useNavigate } from "react-router-dom";
 
-const navigate = useNavigate();
-
-useEffect(() => {
-  const { data: listener } = supabase.auth.onAuthStateChange(
-    (event, session) => {
-      if (event === "SIGNED_IN" && session) {
-        navigate("/dashboard");
-      }
-    }
-  );
-
-  return () => {
-    listener.subscription.unsubscribe();
-  };
-}, []);
 
 const queryClient = new QueryClient();
 

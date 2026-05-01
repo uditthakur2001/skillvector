@@ -15,7 +15,7 @@ export const Hero = () => {
       />
       <div className="container relative grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
         <div className="animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs font-medium mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-muted text-foreground border border-border text-xs font-medium mb-6">
             <Sparkles className="h-3.5 w-3.5 text-accent" />
             <span>Live + recorded cohorts · 1:1 mentorship · Placements</span>
           </div>

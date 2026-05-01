@@ -22,7 +22,8 @@ import Careers from "./pages/Careers.tsx";
 import { SimplePage } from "@/components/SimplePage";
 import NotFound from "./pages/NotFound.tsx";
 
-
+import { useEffect } from "react";
+import { initThemeListener } from "./theme";
 
 const queryClient = new QueryClient();
 
@@ -30,7 +31,11 @@ const Stub = ({ title, eyebrow }: { title: string; eyebrow: string }) => (
   <SimplePage eyebrow={eyebrow} title={title} lead="This page is coming soon. Check back shortly!" />
 );
 
-const App = () => (
+const App = () => {
+  useEffect(() => {
+    initThemeListener();
+  }, []);
+  return(
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -69,5 +74,5 @@ const App = () => (
     </TooltipProvider>
   </QueryClientProvider>
 );
-
+};
 export default App;

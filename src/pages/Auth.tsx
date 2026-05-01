@@ -25,7 +25,7 @@ const Auth = () => {
     const { error } = await supabase.auth.signInWithOtp({
       email: email.trim(),
       options: {
-        emailRedirectTo: `${window.location.origin}/dashboard`,
+        emailRedirectTo: `${window.location.origin}`,
         data: signup ? { full_name: name.trim(), phone: phone.trim() } : undefined,
       },
     });
@@ -39,7 +39,7 @@ const Auth = () => {
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: `${window.location.origin}/dashboard`,
+      redirectTo: `${window.location.origin}`,
     },
   });
 
